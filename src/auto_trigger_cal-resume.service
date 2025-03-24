@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Automated Trigger Calibration on Resume
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/deck/auto_trigger_cal.sh
+User=root
+
+[Install]
+WantedBy=suspend.target

@@ -1,11 +1,12 @@
 [Unit]
-Description=Run Automated Trigger Calibration on Resume
+Description=Re-apply trigger calibration at boot and after resume
 After=suspend.target
 
 [Service]
-Type=simple
+Type=oneshot
+# Give the controller a moment to come back after waking up
+ExecStartPre=/bin/sleep 3
 ExecStart=/bin/bash /home/deck/auto_trigger_cal.sh
-User=root
 
 [Install]
-WantedBy=suspend.target
+WantedBy=multi-user.target suspend.target
